@@ -1,0 +1,45 @@
+# Tjener bankene for mye penger?
+
+**Dato:** torsdag 17. november 2022  
+**Forfatter(e):** Henrik Andersen  
+**Kilde:** https://www.norges-bank.no/bankplassen/arkiv/2022/tjener-bankene-for-mye-penger/
+
+---
+
+*De siste ukene har de norske bankene rapportert sterke resultater for årets tredje kvartal. Norges største bank, DNB,tjente 9,8 milliarder før skatt. Landets største sparebank, SpareBank 1 SR-Bank, hadde ogsåmilliardoverskudd. Men tjener de norske bankene for mye penger?*
+
+God inntjening i bankene kan være bra for samfunnet. Historisk har de fleste bankkrisene blitt forårsaket av store tap på utlån og verdipapirer. God lønnsomhet gir bankene et godt førstelinjeforsvar mot tap og reduserer faren for kostbare bankkriser. På den annen side kan høy lønnsomhet også være et tegn på svak konkurranse. Om konkurransen mellom bankene er liten, kan kundene betale for mye for banktjenestene. Det har også en kostnad for samfunnet.
+
+Et av de mest brukte målene på lønnsomhet er avkastningen på eiernes kapital, det vil si egenkapitalen. Egenkapitalen er andrelinjeforsvaret mot tap i bankene. Banker som går med underskudd, tærer på egenkapitalen. Egenkapitaleierne er de siste som får utbetaling ved konkurs, og de tar derfor større risiko enn innskytere og andre som låner penger til bankene. Siden egenkapitaleierne tar mest risiko, vil de også kreve høyest forventet avkastning for å være villig til å ta risikoen.
+
+Egenkapitalavkastningen måler foretakenes resultat som andel av egenkapitalen:
+
+Egenkapitalavkastningen til de norske bankene ligger betydelig over gjennomsnittet for store europeiske banker, mens den er på nivå med gjennomsnittet for de største svenske bankene. Se figur 1.
+
+Hvis vi sammenligner med andre foretak i finansiell sektor, er lønnsomheten til de norske bankene lavere enn i skadeforsikring, se figur 2. Skadeforsikringsselskapene har hatt en gjennomsnittlig egenkapitalavkastning på 17 prosent siden 2006, og skadeforsikringsselskapet Gjensidige rapporterte en egenkapitalavkastning på 31 prosent i 2021. Til sammenlikning har den norske banksektoren hatt en gjennomsnittlig egenkapitalavkastning på 11 prosent siden 2006. Tilsvarende tall for livsforsikringsselskapene er 9 prosent.
+
+Lønnsomheten til de norske bankene er heller ikke spesielt høy sammenliknet med norske foretak utenfor finanssektoren, se figur 3. Siden 1988 har den norske banksektoren hatt en gjennomsnittlig egenkapitalavkastning på 8 prosent. Tilsvarende måltall for vanlige foretak er 12 prosent. Lønnsomheten til foretak varierer mye mellom næringene. Det siste tiåret har gjennomsnittlig egenkapitalavkastning innen jordbruk, skogbruk og fiske vært 21 prosent, men bare 2 prosent innen transport og lagring.
+
+Egenkapitalavkastningen gir ikke alltid et godt grunnlag for å vurdere lønnsomhet. For eksempel kan egenkapitalavkastningen øke for foretak med fallende egenkapital, selv om resultatet synker. Det taler for å bygge lønnsomhetsanalyser på flere måltall, for eksempel totalkapitalavkastning. Totalkapitalavkastningen viser avkastningen bedrifter har på alle sine eiendeler:
+
+Totalkapitalavkastningen til de norske bankene er betydelig lavere enn totalavkastningen til foretak utenfor finanssektoren, se figur 4. Forskjellen mellom banker og vanlige foretaks totalkapitalavkastning er også større enn forskjellen mellom de to sektorenes egenkapitalavkastning. Det samme gjelder når vi sammenlikner banker og skadeforsikringsselskap. Det kan forklares med at banker har en lavere andel egenkapital enn både skadeforsikringsselskap og ikke-finansielle foretak. I 2021 hadde bankene en gjennomsnittlig egenkapitalandel på 8 prosent, mens foretakene hadde en gjennomsnittlig egenkapitalandel på 49 prosent.
+
+Lønnsomheten til de norske bankene kan også vurderes ut fra investorenes avkastningskrav.Samlet avkastningskrav for en investor består av en risikofri rente og en risikopremie. Renter på trygge statsobligasjoner uttrykker en risikofri rente som kompenserer investorer for forventet inflasjon og løpetidsrisiko. Denne renten danner et gulv for investorers avkastningskrav for gjeldspapirer og andre finansielle eiendeler.
+
+Risikofri rente har falt kraftig de siste tiårene, se figur 5. De norske bankene har likevel opprettholdt egenkapitalavkastningen (se figur 3 og 4). Det kan isolert sett tale for at lønnsomheten i bankene er for høy i dag. Men vanlige foretak har også opprettholdt lønnsomheten.
+
+Mens risikofri rente påvirker avkastningskravet for alle banker og foretak, kan forskjeller i risiko gi forskjellige avkastningskrav mellom enkeltforetak, næringer og sektorer. Risikopremien kompenserer investorene for at fremtidige kontantstrømmer er usikre.
+
+Investorene krever lavere avkastning for å investere i foretak med sikker og stabil lønnsomhet enn i mer risikable foretak. Målt med standardavvik svinger egenkapitalavkastningen til bankene tre ganger mer enn for ikke-finansielle foretak samlet. Den relativt sett lave egenkapitalandelen i bankene øker variasjonen i egenkapitalavkastningen og risikoen ved å investere i banker. Det taler for at egenkapitalavkastningen vil være høyere i banker enn i ikke-finansielle foretak, slik at investorene får en tilstrekkelig risikopremie.
+
+Bildet blir motsatt når vi vurderer hvordan lønnsomheten varierer i enkeltnæringer. Egenkapitalavkastningen varierer mer i flere enkeltnæringer enn for banksektoren. For eksempel har egenkapitalavkastningen innen jordbruk, skogbruk og fiske variert nesten tre ganger mer enn for bankene det siste tiåret. Det indikerer at det er mindre risikabelt å investere i banksektoren enn i disse næringene. Bankene diversifiserer bort risiko ved å låne ut til flere ulike sektorer og næringer. Det demper virkningene av problemer i enkeltnæringer på bankene.
+
+Sharpe Ratioer et mål på risikojustert avkastning som både vurderer meravkastningen utover risikofri rente og hvor mye denne meravkastningen har variert. Meravkastningen beregnes med data på aksjekurser og utbytte som bare er tilgjengelig for børsnoterte selskap, det vil si de største bankene og foretakene. Men om vi forutsetter at bokført egenkapitalavkastning tilsvarer investorenes avkastning på lang sikt, kan vi benytte vårt datasett til å beregne Sharpe Ratio for alle banker og foretak. For det siste tiåret er Sharpe Ratio om lag på samme nivå for banksektoren (3,3) som for skadeforsikringsselskapene (3,0) og livsforsikringsselskapene (3,2), men høyere enn gjennomsnittet for alle ikke-finansielle foretak (2,3). Sharpe ratio for næringseiendom (4,2) og bygg- og anlegg (7,5) er imidlertid betydelig høyere enn for bankene.
+
+Selv om bankenes lønnsomhet har vært relativt stabil det siste tiåret, kan bankene få svært store tap under bankkriser. Beregninger med korte dataserier kan derfor gi misvisende resultater for bankene. Om vi beregner Sharpe-ratio med data tilbake til 1988, slik at de store tapene under bankkrisen på begynnelsen av 1990-tallet er med i beregningen, blir måltallet nær null for bankene (0,1) og lavere enn for ikke-finansielle foretak (1,1).
+
+En siste indikator for vurdering av bankenes lønnsomhet kan være hvor mye bankkundene betaler for banktjenestene. Netto rentemargin måler hvor mye bankene tjener på utlån, rentepapirer og innskudd. For de norske bankene er dette måltallet på nivå med gjennomsnittet for europeiske banker, se figur 6. Samtidig er de norske bankene blantde mest kostnadseffektivei hele EØS-området. Det taler isolert sett for at de norske banktjenestene bør være billigere. På den annen side er prisene for norske betalingstjenester lave. Det skyldes dels at kostnadene for betalingssystemet i Norge erblant de laveste internasjonaltog dels at prisingen av betalingstjenestene ikke dekker alle kostnadene, slik at bankene benytter inntekter fra utlån og innskudd til å finansiere betalingstjenestene.
+
+Samlet sett tyder ikke indikatorene på at de norske bankene tjener for mye penger. De norske bankene har høy egenkapitalavkastning sammenliknet med andre europeiske banker. I tillegg har risikofri rente falt kraftig og kontantstrømmene er mer stabile i banksektoren enn i flere andre næringer. Det taler for at bankenes eiere bør nøye seg med lavere egenkapitalavkastning. På den annen side er lønnsomheten til de norske bankene lavere enn for vanlige norske foretak. Risikojustert avkastning i norske banker er heller ikke høy sammenliknet med andre norske foretak, og risikojustert meravkastning i bankene blir nær null når vi tar med den norske bankkrisen i beregningen. Om bankene hadde tjent mindre penger, ville førstelinjeforsvaret mot tap vært svakere og alt annet likt faren for bankkriser vært høyere. Lavere lønnsomhet kan også svekke bankenes tilgang på egenkapital og gjøre det mer krevende å oppkapitalisere banker i dårlige tider.
+
+Bankplassen er en fagblogg av ansatte i Norges Bank. Synspunktene som uttrykkes her representerer forfatternes syn og kan ikke nødvendigvis tillegges Norges Bank. Har du spørsmål eller innspill, kontakt oss gjerne på bankplassen@norges-bank.no.

@@ -1,0 +1,189 @@
+import requests
+from bs4 import BeautifulSoup
+from pathlib import Path
+import re
+import time
+
+BASE_URL = "https://www.norges-bank.no"
+CATEGORY_URL = BASE_URL + "/bankplassen/kategorier/finansiell-stabilitet/"
+ARTICLES_DIR = Path("articles")
+ARTICLES_PER_PAGE = 12
+TOTAL_ARTICLES = 74
+
+
+def slugify(text: str) -> str:
+    text = text.lower().strip()
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[\s_]+", "-", text)
+    text = re.sub(r"-+", "-", text)
+    return text[:80].rstrip("-")
+
+
+    def format_text(text: str) ->:
+
+def get_article_links() -> list[dict]:
+    """Fetch all article URLs from the paginated listing pages."""
+    articles = []
+    skip = 0
+
+    while skip < TOTAL_ARTICLES:
+        url = CATEGORY_URL if skip == 0 else f"{CATEGORY_URL}?skip={skip}"
+        print(f"Fetching listing page: {url}")
+        resp = requests.get(url, timeout=30)
+        resp.raise_for_status()
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        links = soup.select("a[href*='/bankplassen/arkiv/']")
+        page_articles = []
+        seen = set()
+        for link in links:
+            href = link.get("href", "")
+            if href in seen:
+                continue
+            seen.add(href)
+
+            title_tag = link.select_one("h2, h3, .title, span")
+            title = title_tag.get_text(strip=True) if title_tag else link.get_text(strip=True)
+            if not title or len(title) < 5:
+                title = link.get_text(strip=True)
+            if not title or len(title) < 5:
+                continue
+
+            # Extract year from URL pattern /bankplassen/arkiv/YYYY/
+            year_match = re.search(r"/arkiv/(\d{4})/", href)
+            year = year_match.group(1) if year_match else "unknown"
+
+            full_url = href if href.startswith("http") else BASE_URL + href
+            page_articles.append({"title": title, "url": full_url, "year": year})
+
+        if not page_articles:
+            break
+
+        articles.extend(page_articles)
+        print(f"  Found {len(page_articles)} articles (total: {len(articles)})")
+        skip += ARTICLES_PER_PAGE
+        time.sleep(0.5)
+
+    return articles
+
+
+def fetch_article(url: str, listing_title: str) -> dict:
+    """Fetch a single article and extract its content."""
+    resp = requests.get(url, timeout=30)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    # Date
+    date = ""
+    time_tag = soup.select_one("time.blog-article__time")
+    if time_tag:
+        date = time_tag.get_text(strip=True) or time_tag.get("datetime", "")
+
+    # Authors - get unique names from the byline list
+    authors = ""
+    author_els = soup.select("ul.blog-article__authors > li")
+    if author_els:
+        names = dict.fromkeys(a.get_text(strip=True) for a in author_els)
+        authors = ", ".join(names)
+
+    # Intro paragraph
+    intro = ""
+    intro_el = soup.select_one(".blog-article__main-intro")
+    if intro_el:
+        intro = intro_el.get_text(strip=True)
+
+    # Main body content
+    body = soup.select_one(".blog-article__main-body")
+    if body is None:
+        body = soup.select_one(".blog-article__content")
+    if body is None:
+        body = soup.select_one("main")
+    if body is None:
+        body = soup
+
+    # Remove nav, header, footer, sidebar, comments
+    for tag in body.select("nav, header, footer, aside, script, style, .blog-article__comments, .blog-comments"):
+        tag.decompose()
+
+    # Extract text with some structure preservation
+    content_parts = []
+    skip_first_h2 = True  # skip the article title h2, we already have it
+    for el in body.descendants:
+        if el.name in ("h2", "h3", "h4"):
+            if el.name == "h2" and skip_first_h2:
+                skip_first_h2 = False
+                continue
+            text = el.get_text(strip=True)
+            if text:
+                level = int(el.name[1])
+                content_parts.append(f"\n{'#' * level} {text}\n")
+        elif el.name == "p":
+            text = el.get_text(strip=True)
+            if text:
+                content_parts.append(f"\n{text}\n")
+        elif el.name == "li":
+            text = el.get_text(strip=True)
+            if text:
+                content_parts.append(f"- {text}")
+        elif el.name == "figcaption":
+            text = el.get_text(strip=True)
+            if text:
+                content_parts.append(f"\n*{text}*\n")
+
+    body_text = "\n".join(content_parts)
+    # Clean up excessive newlines
+    body_text = re.sub(r"\n{3,}", "\n\n", body_text)
+
+    return {
+        "title": listing_title,
+        "date": date,
+        "authors": authors,
+        "intro": intro,
+        "body": body_text.strip(),
+        "url": url,
+    }
+
+
+def save_article(article: dict, year: str) -> Path:
+    """Save article as markdown file organized by year."""
+    year_dir = ARTICLES_DIR / year
+    year_dir.mkdir(parents=True, exist_ok=True)
+
+    filename = slugify(article["title"]) + ".md"
+    filepath = year_dir / filename
+
+    md = f"# {article['title']}\n\n"
+    if article["date"]:
+        md += f"**Dato:** {article['date']}  \n"
+    if article["authors"]:
+        md += f"**Forfatter(e):** {article['authors']}  \n"
+    md += f"**Kilde:** {article['url']}\n"
+    md += "\n---\n\n"
+    if article.get("intro"):
+        md += f"*{article['intro']}*\n\n"
+    md += f"{article['body']}\n"
+
+    filepath.write_text(md, encoding="utf-8")
+    return filepath
+
+
+def main():
+    print("Fetching article listing...")
+    articles = get_article_links()
+    print(f"\nFound {len(articles)} articles total.\n")
+
+    for i, info in enumerate(articles, 1):
+        print(f"[{i}/{len(articles)}] Fetching: {info['title'][:60]}...")
+        try:
+            article = fetch_article(info["url"], info["title"])
+            path = save_article(article, info["year"])
+            print(f"  Saved to {path}")
+        except Exception as e:
+            print(f"  ERROR: {e}")
+        time.sleep(0.5)
+
+    print(f"\nDone! Articles saved to {ARTICLES_DIR}/")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,27 @@
+# Hvor stor er norsk banksektor? En internasjonal sammenligning
+
+**Dato:** mandag 14. januar 2019  
+**Forfatter(e):** Arild J. Lund, Mari Aasgaard Walle  
+**Kilde:** https://www.norges-bank.no/bankplassen/arkiv/2019/hvor-stor-er-norsk-banksektor-en-internasjonal-sammenligning/
+
+---
+
+*Bankene dominerer den finansielle sektoren i Norge, og både ikke-finansielle foretak og husholdningene finansierer seg i stor grad med banklån. Det betyr likevel ikke at vi har en stor banksektor sammenlignet med andre land. Norske banker har nemlig relativt lite aktivitet i utlandet.*
+
+Hvordan definerer man et lands banksektor? Bankvirksomhet er svært internasjonal. I de fleste land er det betydelig innslag av utenlandske banker som opererer gjennom datterbanker, filialer og direkte grensekryssende virksomhet. Landets egne banker har på samme måte aktiviteter i utlandet.  Hva som er et lands banksektor kan derfor defineres på ulike måter. Definisjonen avhenger også av om man regner med en banks øvrige datterselskaper. Selve bankvirksomheten kan i tillegg måles på ulike måter. Det kan blant annet være samlet balanse, innskudd eller utlån. I denne bloggen ser vi på ulike definisjoner av et lands bankvirksomhet, men vi er begrenset av hva som er tilgjengelig fra internasjonal statistikk på feltet.
+
+For å besvare spørsmålet om hvor stor den norske banksektoren er, melder det seg også andre spørsmål. Flere av disse har vi forsøkt å besvare i et nyttNorges Bank staff memo. Blant annet: Er banksektoren i Norge norskeid eller dominert av utenlandskeide banker? Hva med andre finansieringskilder som for eksempel obligasjonsmarkedet? Hvis bankene dominerer, er obligasjonsmarkedet tilsvarende lite sammenlignet med andre land?
+
+En første indikasjon på at den norske banksektoren ikke er spesielt stor får vi ved å se på samlede eiendeler som andel av BNP. Figur 1 viser samlede eiendeler til bankene i et utvalg europeiske land fordelt på henholdsvis nasjonale banker (eid av innlendinger og med konsesjon i landet) og filialer og datterbanker av utenlandske banker.  Det er brukt konsoliderte tall, noe som betyr at datterbanker (og filialer) i andre land behandles som om de er en del av morselskapet. Både for nasjonale banker og for utenlandske datterbanker og filialer er Norge omtrent på medianen i dette utvalget. Blant de vest-europeiske landene var det bare Finland og Belgia som hadde en mindre nasjonal banksektor i 2016. De nasjonale banksektorene i EU-landene i Øst-Europa er klart mindre. Det henger blant annet sammen med et lavere inntektsnivå og at banksystemet i disse landene i mye større grad domineres av utenlandske banker i form av datterbanker og filialer.
+
+Både nasjonale banker, datterbanker og filialer kan ha eiendeler i det aktuelle landet (innenlandske motparter) og i utlandet (utenlandske motparter). Ved å se på eiendelene til de nasjonale bankene fordelt på innenlandske og utenlandske motparter, kan vi få mer informasjon om hvordan det norske banksystemet skiller seg fra andre vest-europeiske land, se figur 2. Vi ser her at norske nasjonale banker har en betydelig mindre andel eiendeler mot utenlandske motparter enn øvrige vest-europeiske land. Men også andelen eiendeler mot nasjonale motparter er relativt lavt sammenlignet med de andre landene i figuren. Figur 2 er basert på tall fra BIS konsoliderte bankstatistikktall. Disse tallene kan for noen land avvike noe fra de konsoliderte tallene fra ECB som ble brukt i figur 1 på grunn av forskjellig utvalg av banker.
+
+Norske nasjonale banker skiller seg særlig ut ved å ha en liten andel eiendeler mot utenlandske motparter. Figur 3 viser en dekomponering av bankenes utenlandske eiendeler på henholdsvis banker, andre finansielle institusjoner enn banker og ikke-finansielle sektorer. I figuren bruker vi ikke-konsoliderte tall fra BIS.
+
+Disse tallene tar utgangspunkt i hvilket land banken er lokalisert og den konsoliderer ikke inn datterbanker eller filialer i utlandet. Filialer og datterbanker av utenlandske banker regnes som lokalisert i landet.  For land med stort innslag av utenlandske datterbanker og filialer kan det sies at denne statistikken overvurderer omfanget av banksystemet. For Norge viser figuren at eiendelene med utenlandske motparter er lave for alle sektorer sammenlignet med de fleste andre land.
+
+Vi har også sammenlignet samlede utlån fra banksystemene i ulike land fordi utlån normalt utgjør en stor del av balansen. Målt ved bankutlån er ikke det norske banksystemet så lite sammenlignet med andre lands banksystemer som målt ved samlede eiendeler. Det tyder på at andre lands banksektorer har relativt mer av andre typer eiendeler på sin balanse enn utlån. Det kan for eksempel være statspapirer.
+
+Verdipapirlån (obligasjoner og sertifikater) er et alternativ til bankopplåning.  Vil et relativt lite norsk banksystem ha sitt motstykke i mye verdipapirfinansiering i Norge sammenliknet med andre land? Tall for verdipapirlån for alle sektorer synes ikke å bekrefte en slik hypotese, se figur 4. Disse tallene kan være påvirket av det lave nivået på offentlig gjeld i Norge.
+
+Uansett hvordan vi definerer et lands banksektor, finner vi at den norske banksektoren ikke er spesielt stor i europeisk sammenheng. Vi har en av de minste banksektorene i Vest-Europa.  Dersom vi ser på alle sektorer samlet kan ikke mer verdipapirmarkedsfinansiering forklare noe av dette. Den viktigste forskjellen synes å være at banker i Norge har mindre aktivitet i utlandet enn banker i andre land i Vest-Europa.
