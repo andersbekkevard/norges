@@ -71,8 +71,29 @@ vurderinger" (flat narrative). The prompts target the 2023–2024 format.
 
 ## Phase 3: Write the Prompts
 
+> **See [`conversation-log.md`](conversation-log.md) for the exact prompts I gave
+> Claude at each step.** Seven messages total — three produced prompt files, one
+> set design constraints, one documented the project. The log shows how a human
+> drives an LLM agent through a multi-step creative task.
+
 We decomposed the problem into three independent axes, then built one prompt
 per axis. This avoids a single monolithic prompt and lets users compose them.
+
+The conversation went:
+
+1. **Frame the task** — described the overall goal, output format (XML-structured
+   .md files with DO/DON'T examples), and pointed Claude at the corpus
+2. **Lock design decisions** — model-agnostic, English meta-instructions,
+   Norwegian examples (XLT pattern)
+3. **"skriv en generell språkmirror-prompt"** → produced `style-mirror.md`.
+   Claude spawned subagents to analyze all 12 PPRs in parallel (structural
+   patterns, linguistic patterns) before synthesizing the prompt
+4. **"lag en prompt som speiler strukturen"** → produced
+   `structure-ppr-vurderinger.md`. Told Claude to reuse components from the
+   first prompt and use cheap subagents for file reading
+5. **"write a CLAUDE.md"** → documented the project for future sessions
+6. **"lage en ny promptinginstruksjon, som kunn fikser språket"** → produced
+   `language-rewrite.md`, the complement to the structure prompt
 
 ### Design conventions (shared across all prompts)
 
@@ -167,6 +188,7 @@ norges/
 │   ├── structure-ppr-vurderinger.md
 │   └── language-rewrite.md
 ├── scratch/               # Working notes and drafts
+├── conversation-log.md    # The 7 prompts that built this project
 ├── begreper.md            # Domain glossary
 ├── main.py                # Bankplassen article scraper
 ├── fetch_pprs.py          # PPR report scraper
