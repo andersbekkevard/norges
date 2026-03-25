@@ -1,0 +1,16 @@
+{
+  "name": "graphs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exporting.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "highcharts": "^12.5.0"
+  }
+}

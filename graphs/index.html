@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPR Forecast Charts</title>
+  <script src="data.js"></script>
+  <script src="highcharts.js"></script>
+  <script src="exporting.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #222;
+      padding: 32px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    h1 sup {
+      font-size: 10px;
+      font-weight: 600;
+      vertical-align: super;
+      margin-left: 2px;
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 28px;
+      margin-top: 12px;
+    }
+
+    .chart-container {
+      width: 100%;
+      height: 320px;
+    }
+
+    .shared-legend {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      margin-top: 8px;
+      padding: 10px 0 4px 0;
+      font-size: 13px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: #333;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-line {
+      display: inline-block;
+      height: 0;
+    }
+
+    .legend-line.solid-blue {
+      width: 24px;
+      border-top: 3px solid #0026FF;
+    }
+
+    .legend-line.dashed-blue {
+      width: 24px;
+      border-top: 3px dashed #0026FF;
+    }
+
+    .legend-line.dotted-orange {
+      width: 40px;
+      border-top: 3px dotted #EF954A;
+    }
+
+    @media print {
+      body { padding: 16px; }
+      .chart-container { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Forsiktig normalisering av styringsrenten <sup>1</sup></h1>
+
+  <div class="chart-grid">
+    <div id="chart-styringsrente" class="chart-container"></div>
+    <div id="chart-produksjonsgap" class="chart-container"></div>
+    <div id="chart-kpi" class="chart-container"></div>
+    <div id="chart-kpijae" class="chart-container"></div>
+  </div>
+
+  <div class="shared-legend">
+    <div class="legend-item">
+      <span class="legend-line solid-blue"></span>
+      <span class="legend-line dashed-blue"></span>
+      Anslag PPR 4/25
+    </div>
+    <div class="legend-item">
+      <span class="legend-line dotted-orange"></span>
+      Anslag PPR 3/25
+    </div>
+  </div>
+
+<script>
+// ============================================================
+//  CHART BUILDER
+//  Data is loaded from data.js — edit estimates there.
+// ============================================================
+
+const NB = {
+  blue:       '#0026FF',
+  orange:     '#EF954A',
+  redLine:    '#FE3731',
+  redText:    '#F00',
+  gridColor:  '#d9d9d9',
+  axisColor:  '#333333',
+  labelColor: '#555555',
+  titleColor: '#1a1a2e',
+};
+
+function createChart(containerId, titleText, actual, forecast, prev, yOpts, extraPlotLines) {
+  Highcharts.chart(containerId, {
+    chart: {
+      type: 'spline',
+      backgroundColor: '#ffffff',
+      style: { fontFamily: "'Open Sans', Arial, Helvetica, sans-serif" },
+      spacing: [12, 8, 8, 4],
+      animation: false,
+    },
+    title: {
+      text: titleText,
+      align: 'left',
+      style: {
+        fontSize: '14px',
+        fontWeight: '600',
+        color: NB.titleColor,
+      },
+      margin: 16,
+    },
+    credits: { enabled: false },
+    legend: { enabled: false },
+    exporting: {
+      buttons: {
+        contextButton: {
+          symbolStroke: '#aaa',
+          theme: { fill: 'transparent' },
+        }
+      }
+    },
+    tooltip: {
+      shared: true,
+      borderColor: '#ccc',
+      borderRadius: 2,
+      shadow: false,
+      style: { fontSize: '12px' },
+      formatter: function() {
+        const yr = Math.floor(this.x);
+        const q = Math.round((this.x - yr) * 4) + 1;
+        let s = '<b>' + yr + ' Q' + q + '</b><br/>';
+        this.points.forEach(function(p) {
+          s += '<span style="color:' + p.color + '">\u25CF</span> '
+             + p.series.name + ': <b>' + p.y.toFixed(2) + '</b><br/>';
+        });
+        return s;
+      }
+    },
+    xAxis: {
+      type: 'linear',
+      lineColor: NB.axisColor,
+      lineWidth: 1.5,
+      tickColor: NB.axisColor,
+      tickWidth: 1.5,
+      tickLength: 5,
+      tickInterval: 2,
+      min: 2019,
+      max: 2028,
+      gridLineWidth: 0,
+      labels: {
+        style: { color: NB.labelColor, fontSize: '12px' },
+        format: '{value:.0f}',
+      },
+    },
+    yAxis: {
+      lineColor: NB.axisColor,
+      lineWidth: 1.5,
+      tickColor: NB.axisColor,
+      tickWidth: 1.5,
+      tickLength: 5,
+      gridLineColor: NB.gridColor,
+      gridLineWidth: 0.8,
+      gridLineDashStyle: 'Solid',
+      title: { text: null },
+      opposite: false,
+      labels: {
+        style: { color: NB.labelColor, fontSize: '12px' },
+      },
+      min: yOpts.min,
+      max: yOpts.max,
+      tickInterval: yOpts.tickInterval,
+      plotLines: extraPlotLines || [],
+    },
+    plotOptions: {
+      spline: {
+        lineWidth: 2.8,
+        marker: { enabled: false },
+        states: { hover: { lineWidthPlus: 0 } },
+        animation: false,
+      },
+    },
+    series: [
+      {
+        name: 'Historisk',
+        data: actual,
+        color: NB.blue,
+        lineWidth: 2.8,
+        dashStyle: 'Solid',
+        zIndex: 3,
+      },
+      {
+        name: 'Anslag PPR 4/25',
+        data: forecast,
+        color: NB.blue,
+        lineWidth: 2.8,
+        dashStyle: 'Dash',
+        zIndex: 2,
+      },
+      {
+        name: 'Anslag PPR 3/25',
+        data: prev,
+        color: NB.orange,
+        lineWidth: 2.8,
+        dashStyle: 'ShortDot',
+        zIndex: 1,
+      },
+    ],
+  });
+}
+
+
+// --- Render all four charts ---
+
+// 1. Styringsrente
+createChart('chart-styringsrente', 'Styringsrente. Prosent',
+  DATA.styringsrente.actual, DATA.styringsrente.forecast, DATA.styringsrente.previous,
+  { min: 0, max: 5, tickInterval: 1 }
+);
+
+// 2. Produksjonsgap (with zero-line)
+createChart('chart-produksjonsgap', 'Produksjonsgap. Prosent',
+  DATA.produksjonsgap.actual, DATA.produksjonsgap.forecast, DATA.produksjonsgap.previous,
+  { min: -6, max: 4, tickInterval: 2 },
+  [{ value: 0, color: NB.axisColor, width: 1.2, zIndex: 4 }]
+);
+
+// Inflation target plotLine
+var inflTargetLine = [{
+  value: 2,
+  color: NB.redLine,
+  width: 1.5,
+  zIndex: 0,
+  dashStyle: 'Solid',
+  label: {
+    text: 'Inflasjonsmål',
+    align: 'right',
+    x: -8,
+    y: 14,
+    style: { color: NB.redText, fontSize: '11px', fontWeight: '600' },
+  }
+}];
+
+// 3. KPI
+createChart('chart-kpi', 'KPI. Firekvartalersvekst. Prosent',
+  DATA.kpi.actual, DATA.kpi.forecast, DATA.kpi.previous,
+  { min: 0, max: 8, tickInterval: 2 },
+  inflTargetLine
+);
+
+// 4. KPI-JAE
+createChart('chart-kpijae', 'KPI-JAE. Firekvartalersvekst. Prosent',
+  DATA.kpiJae.actual, DATA.kpiJae.forecast, DATA.kpiJae.previous,
+  { min: 0, max: 8, tickInterval: 2 },
+  inflTargetLine
+);
+
+</script>
+</body>
+</html>

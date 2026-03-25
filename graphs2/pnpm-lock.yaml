@@ -1,0 +1,30 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      highcharts:
+        specifier: ^12.5.0
+        version: 12.5.0
+
+packages:
+
+  highcharts@12.5.0:
+    resolution: {integrity: sha512-uNSSv1KqRLNvkyXlf1FbeGWB1mJ/8/IYpVeqYiTIop5Wo8peUvNyzUfLa58vILsmXyz+XrETtgKIEOcSgBBKuQ==}
+    peerDependencies:
+      jspdf: ^3.0.0
+      svg2pdf.js: ^2.6.0
+    peerDependenciesMeta:
+      jspdf:
+        optional: true
+      svg2pdf.js:
+        optional: true
+
+snapshots:
+
+  highcharts@12.5.0: {}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>graphs2 · Norges Bank Chart Studio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="highcharts.js"></script>
+  <script src="exporting.js"></script>
+  <script src="presets.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="panel control-panel">
+      <div class="brand">
+        <p class="eyebrow">graphs2</p>
+        <h1>Norges Bank chart studio</h1>
+        <p>
+          Keep the original <code>graphs/</code> untouched, and use this workspace to turn CSV,
+          JSON specs, quarterly paths, monthly trackers, or yearly series into exportable
+          Norges Bank-style charts.
+        </p>
+      </div>
+
+      <section class="control-section">
+        <h3>1. Start from a preset</h3>
+        <p class="control-help">
+          The current 2x2 PPR dashboard lives here as the default preset, and there are extra
+          monthly and yearly examples to demonstrate multiple resolutions.
+        </p>
+
+        <div class="field">
+          <label for="preset-select">Preset</label>
+          <select id="preset-select"></select>
+        </div>
+
+        <div class="button-row">
+          <button id="load-preset" class="primary" type="button">Load preset</button>
+        </div>
+      </section>
+
+      <section class="control-section">
+        <h3>2. Render or tweak the JSON spec</h3>
+        <p class="control-help">
+          The JSON spec is the nimble fallback when you want full control. CSV import builds
+          a spec for you, then you can fine-tune titles, axis limits, legend labels, plot lines,
+          and series styles here.
+        </p>
+
+        <div class="field">
+          <label for="spec-editor">Spec editor</label>
+          <textarea id="spec-editor" spellcheck="false"></textarea>
+          <div class="field-hint">
+            Supported chart resolutions: <code>quarter</code>, <code>month</code>,
+            <code>year</code>, <code>date</code>, and <code>numeric</code>.
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="render-spec" class="primary" type="button">Render spec</button>
+          <button id="format-spec" type="button">Format JSON</button>
+          <button id="download-spec" type="button">Download JSON</button>
+        </div>
+      </section>
+
+      <section class="control-section">
+        <h3>3. Build a spec from CSV</h3>
+        <p class="control-help">
+          Paste CSV or TSV, or upload a file. Map the columns once, then graphs2 groups rows
+          into charts and series automatically. The generated spec lands in the editor so you
+          can keep shaping it.
+        </p>
+
+        <div class="field">
+          <label for="csv-text">CSV / TSV input</label>
+          <textarea id="csv-text" spellcheck="false" placeholder="chart,series,period,value&#10;KPI,Historisk,2024-Q1,4.0&#10;KPI,Historisk,2024-Q2,3.2"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="csv-file">Upload file</label>
+          <input id="csv-file" type="file" accept=".csv,.tsv,text/csv,text/tab-separated-values">
+        </div>
+
+        <div class="field">
+          <label for="csv-title">Dashboard title</label>
+          <input id="csv-title" type="text" value="Imported series" placeholder="Imported series">
+        </div>
+
+        <div class="mapping-grid">
+          <div class="field">
+            <label for="csv-delimiter">Delimiter</label>
+            <select id="csv-delimiter">
+              <option value="auto">Auto-detect</option>
+              <option value=",">Comma</option>
+              <option value=";">Semicolon</option>
+              <option value="tab">Tab</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="csv-resolution">Time resolution</label>
+            <select id="csv-resolution">
+              <option value="quarter">Quarter</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+              <option value="date">Date</option>
+              <option value="numeric">Numeric</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="csv-x-column">X / period column</label>
+            <select id="csv-x-column"></select>
+          </div>
+
+          <div class="field">
+            <label for="csv-y-column">Value column</label>
+            <select id="csv-y-column"></select>
+          </div>
+
+          <div class="field">
+            <label for="csv-series-column">Series column</label>
+            <select id="csv-series-column"></select>
+          </div>
+
+          <div class="field">
+            <label for="csv-chart-column">Chart column</label>
+            <select id="csv-chart-column"></select>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="inspect-csv" class="secondary" type="button">Inspect CSV</button>
+          <button id="load-sample-csv" type="button">Use sample CSV</button>
+          <button id="build-csv-spec" class="primary" type="button">Build spec</button>
+        </div>
+
+        <div id="csv-status" class="status-note"></div>
+
+        <pre class="code-sample">Expected columns can be as simple as:
+
+chart,series,period,value
+KPI,Historisk,2024-Q1,4.0
+KPI,Historisk,2024-Q2,3.2
+KPI,Anslag,2025-Q1,2.7
+KPI,Anslag,2025-Q2,3.0</pre>
+      </section>
+    </aside>
+
+    <main class="panel preview-panel">
+      <div class="preview-header">
+        <div class="preview-intro">
+          <p class="eyebrow">Preview</p>
+          <h2 id="preview-heading">Norges Bank-style charts on demand</h2>
+          <p id="preview-description" class="preview-meta">
+            Render presets, import new data series, and export charts from the built-in
+            Highcharts menu without depending on a remote CDN.
+          </p>
+        </div>
+
+        <div class="button-row compact">
+          <button id="reset-to-default" type="button">Reset to default</button>
+        </div>
+      </div>
+
+      <div id="status-banner" class="status-banner"></div>
+      <div id="chart-preview" class="preview-surface"></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
